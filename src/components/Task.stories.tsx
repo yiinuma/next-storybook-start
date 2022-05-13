@@ -1,6 +1,6 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
-import { Task } from './Task';
+import { Task, TaskType } from './Task';
 
 export default {
   title: 'Task',
@@ -8,20 +8,23 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof Task>;
 
-const Template: ComponentStory<typeof Task> = (args) => <Task {...args} />;
+type Story = ComponentStoryObj<typeof Task>;
 
-const defaultTask = {
+const defaultTask: TaskType = {
   id: '1',
   title: 'OK Test Task',
   state: 'TASK_INBOX',
   updatedAt: new Date(2021, 0, 10, 10, 0),
 };
 
-export const Default = Template.bind({});
-Default.args = { task: defaultTask };
+export const Default: Story = {
+  args: { task: defaultTask },
+};
 
-export const Pinned = Template.bind({});
-Pinned.args = { task: { ...defaultTask, state: 'TASK_PINNED' } };
+export const Pinned: Story = {
+  args: { task: { ...defaultTask, state: 'TASK_PINNED' } },
+};
 
-export const Archived = Template.bind({});
-Archived.args = { task: { ...defaultTask, state: 'TASK_ARCHIVED' } };
+export const Archived: Story = {
+  args: { task: { ...defaultTask, state: 'TASK_ARCHIVED' } },
+};

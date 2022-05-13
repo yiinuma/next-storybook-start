@@ -1,15 +1,16 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
 import { TaskList } from './TaskList';
-import * as TaskStories from './Task.stories';
 import { TaskType } from './Task';
+import * as TaskStories from './Task.stories';
 
 export default {
   title: 'TaskList',
   component: TaskList,
+  decorators: [(story) => <div style={{ padding: '3rem' }}>{story()}</div>],
 } as ComponentMeta<typeof TaskList>;
 
-const Template: ComponentStory<typeof TaskList> = (args) => <TaskList {...args} />;
+type Story = ComponentStoryObj<typeof TaskList>;
 
 const defaultTask = TaskStories.Default.args?.task as TaskType;
 
@@ -21,24 +22,28 @@ const defaultTasks = [
   { ...defaultTask, id: '5', title: 'Task 5' },
   { ...defaultTask, id: '6', title: 'Task 6' },
 ];
-export const DefaultTasks = Template.bind({});
-DefaultTasks.args = { tasks: defaultTasks };
-
-export const WithPinnedTasks = Template.bind({});
-WithPinnedTasks.args = {
-  tasks: [
-    ...defaultTasks.slice(0, 5),
-    {
-      id: '6',
-      title: 'Task 6 (pinned)',
-      state: 'TASK_PINNED',
-      updatedAt: new Date(2021, 0, 10, 10, 0),
-    },
-  ],
+export const DefaultTasks: Story = {
+  args: { tasks: defaultTasks },
 };
 
-export const Loading = Template.bind({});
-Loading.args = { tasks: [], loading: true };
+export const WithPinnedTasks: Story = {
+  args: {
+    tasks: [
+      ...defaultTasks.slice(0, 5),
+      {
+        id: '6',
+        title: 'Task 6 (pinned)',
+        state: 'TASK_PINNED',
+        updatedAt: new Date(2021, 0, 10, 10, 0),
+      },
+    ],
+  },
+};
 
-export const Empty = Template.bind({});
-Empty.args = { ...Loading.args, loading: false };
+export const Loading: Story = {
+  args: { tasks: [], loading: true },
+};
+
+export const Empty: Story = {
+  args: { ...Loading.args, loading: false },
+};
