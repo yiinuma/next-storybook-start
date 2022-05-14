@@ -11,7 +11,7 @@ type Props = {
   onArchiveTask: (id: string) => void;
 };
 
-export const PureTaskList = ({ loading, tasks, onPinTask, onArchiveTask }: Props) => {
+export const TaskList = ({ loading, tasks, onPinTask, onArchiveTask }: Props) => {
   const events = {
     onPinTask,
     onArchiveTask,
@@ -57,17 +57,3 @@ export const PureTaskList = ({ loading, tasks, onPinTask, onArchiveTask }: Props
     </div>
   );
 };
-
-PureTaskList.defaultProps = {
-  loading: false,
-};
-
-export default connect(
-  ({ tasks }) => ({
-    tasks: tasks.filter((t: { state: string }) => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED'),
-  }),
-  (dispatch) => ({
-    onArchiveTask: (id: string) => dispatch(archiveTask(id)),
-    onPinTask: (id: string) => dispatch(pinTask(id)),
-  })
-)(PureTaskList);
