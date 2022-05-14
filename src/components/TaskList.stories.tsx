@@ -1,16 +1,16 @@
 import type { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
-import { TaskList } from './TaskList';
+import { PureTaskList } from './TaskList';
 import { TaskType } from './Task';
 import * as TaskStories from './Task.stories';
 
 export default {
-  title: 'TaskList',
-  component: TaskList,
+  title: 'PureTaskList',
+  component: PureTaskList,
   decorators: [(story) => <div style={{ padding: '3rem' }}>{story()}</div>],
-} as ComponentMeta<typeof TaskList>;
+} as ComponentMeta<typeof PureTaskList>;
 
-type Story = ComponentStoryObj<typeof TaskList>;
+type Story = ComponentStoryObj<typeof PureTaskList>;
 
 const defaultTask = TaskStories.Default.args?.task as TaskType;
 
