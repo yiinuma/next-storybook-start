@@ -1032,3 +1032,7 @@ a:focus {
   font-size: medium;
   padding-top: 0.5em;
 }
+
+input {
+  text-overflow: ellipsis;
+}
