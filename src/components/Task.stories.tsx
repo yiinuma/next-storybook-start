@@ -30,6 +30,6 @@ export const Archived: Story = {
   args: { task: { ...defaultTask, state: 'TASK_ARCHIVED' } },
 };
 
-export const LongString: Story = {
+export const LongTitle: Story = {
   args: { task: { ...defaultTask, title: longTitleString } },
 };

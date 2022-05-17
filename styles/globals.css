@@ -1033,6 +1033,6 @@ a:focus {
   padding-top: 0.5em;
 }
 
-input {
+/* input {
   text-overflow: ellipsis;
-}
+} */
